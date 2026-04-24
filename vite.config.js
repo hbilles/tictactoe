@@ -1,10 +1,5 @@
 import { defineConfig } from 'vite'
-
-function react() {
-  return {
-    name: 'react-jsx-runtime',
-  }
-}
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],

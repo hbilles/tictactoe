@@ -93,20 +93,26 @@ export default function App() {
 
   return (
     <div
-      className="flex items-center justify-center h-screen text-center text-[#fefefe]"
+      className="app-shell relative flex min-h-screen items-center justify-center text-center text-[#fefefe]"
       style={{
         fontFamily:
           "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
       }}
     >
-      <main className="px-4 w-full max-w-[600px]">
+      <main className="w-full max-w-[600px] px-4 py-12">
         <Icons />
-        <div className="grid grid-cols-3 auto-rows-fr gap-[2px]">
+        <div
+          aria-label="Tic-Tac-Toe board"
+          className="grid aspect-square w-full grid-cols-3 gap-[2px] rounded-sm bg-white/20 p-[2px] shadow-[0_20px_60px_rgba(0,0,0,0.2)]"
+          role="grid"
+        >
           {gameState.map((value, index) => (
             <div
               key={index}
-              className="bg-black/10 cursor-pointer"
+              aria-label={`Cell ${index + 1}`}
+              className="flex aspect-square cursor-pointer items-center justify-center bg-black/10 transition hover:bg-black/20"
               data-testid={`cell-${index}`}
+              role="gridcell"
               onClick={() => selectCell(index, -1)}
             >
               <CellSymbol index={index} value={value} />
