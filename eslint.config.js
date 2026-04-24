@@ -1,34 +1,35 @@
 import js from '@eslint/js'
-import vue from 'eslint-plugin-vue'
-import vueParser from 'vue-eslint-parser'
 import globals from 'globals'
 
 export default [
   {
-    files: ['src/**/*.{js,vue}'],
+    files: ['src/**/*.{js,jsx}'],
     ...js.configs.recommended,
   },
-  ...vue.configs['flat/recommended'].map((config) => ({
-    ...config,
-    files: ['src/**/*.{js,vue}'],
-  })),
   {
-    files: ['src/**/*.{js,vue}'],
+    files: ['src/**/*.{js,jsx}'],
     languageOptions: {
-      parser: vueParser,
       ecmaVersion: 'latest',
       sourceType: 'module',
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
       globals: {
         ...globals.browser,
         ...globals.node,
       },
     },
+  },
+  {
+    files: ['src/**/*.jsx'],
     rules: {
-      'vue/multi-word-component-names': 'off',
+      'no-unused-vars': 'off',
     },
   },
   {
-    files: ['src/**/*.test.js'],
+    files: ['src/**/*.test.{js,jsx}'],
     languageOptions: {
       globals: {
         ...globals.browser,

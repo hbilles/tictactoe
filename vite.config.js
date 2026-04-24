@@ -1,8 +1,13 @@
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+
+function react() {
+  return {
+    name: 'react-jsx-runtime',
+  }
+}
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [react()],
   server: {
     port: 8080,
   },

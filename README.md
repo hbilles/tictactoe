@@ -2,13 +2,15 @@
 
 > Play Tic-Tac-Toe against your browser.
 
+This project is a React implementation of the original Tic-Tac-Toe UI, built with Vite, Tailwind CSS, and Vitest. The gameplay rules and computer strategy still live in [`src/game.js`](./src/game.js); the framework migration is intended to preserve the existing browser behavior rather than redesign the game.
+
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at http://localhost:8080
 npm run dev
 
 # build for production
@@ -19,6 +21,9 @@ npm run preview
 
 # run the test suite
 npm run test
+
+# run a targeted test file
+npx vitest run src/App.test.jsx
 
 # lint source files
 npm run lint
