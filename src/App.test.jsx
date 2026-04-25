@@ -41,8 +41,12 @@ describe('App', () => {
     vi.spyOn(Math, 'random').mockReturnValue(0)
     await renderApp()
 
+    const board = container.querySelector('[role="grid"]')
     const cells = getCells()
+
+    expect(board?.getAttribute('aria-label')).toBe('Tic-Tac-Toe board')
     expect(cells).toHaveLength(9)
+    expect(cells.every((cell) => cell.getAttribute('role') === 'gridcell')).toBe(true)
 
     await act(async () => {
       cells[0].click()
@@ -60,6 +64,12 @@ describe('App', () => {
   it('reset control flips the starting player and resets the board', async () => {
     vi.spyOn(Math, 'random').mockReturnValue(0)
     await renderApp()
+
+    expect(
+      Array.from(container.querySelectorAll('button')).some(
+        (button) => button.textContent === 'Let Computer Start',
+      ),
+    ).toBe(true)
 
     const [firstCell] = getCells()
     await act(async () => {
@@ -84,6 +94,8 @@ describe('App', () => {
         (button) => button.textContent === 'Let Me Start',
       ),
     ).toBe(true)
+    expect(container.querySelector('[role="grid"]')).toBeTruthy()
+    expect(getCells()).toHaveLength(9)
     expect(occupied[0].querySelector('use')?.getAttribute('href')).toBe('#icon--x')
   })
 
